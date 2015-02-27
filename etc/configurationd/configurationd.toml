@@ -1,8 +1,0 @@
-backend = "etcd"
-debug = true
-confdir = "/etc/registerd"
-nodes = [
-  "http://192.168.39.21:4001",
-  "http://192.168.39.22:4001",
-  "http://192.168.39.23:4001",
-]
