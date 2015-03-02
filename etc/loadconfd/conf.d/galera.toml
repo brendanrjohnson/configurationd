@@ -1,32 +1,30 @@
-
-[configuration]
 conffile = "my.cnf"
 [[group]]
 identifier	=	"client"
-	[group.port]
+	[[group.pair]]
 	key		=	"port"
-	value	=	3306
+	value	=	"3306"
 
-	[group.socket]
+	[[group.pair]]
 	key		=	"socket"
 	value	=	"/var/run/mysqld/mysqld.sock"
 
 [[group]]
 identifier	=	"mysqld_safe"
-	[group.socket]
+	[[group.pair]]
 	key		=	"socket"
 	value	=	"/var/run/mysqld/mysqld.sock"
 
-	[group.nice]
+	[[group.pair]]
 	key		=	"nice"
-	value	=	0
+	value	=	"0"
 
 [[group]]
-identifier	=	"mysqld"
-	[group.name]
+Identifier	=	"mysqld"
+	[[group.pair]]
 	key		=	"name"
 	value	=	"mysql"
 
-	[group.pidfile]
+	[[group.pair]]
 	key		=	"pid-file"
 	value	=	"/var/run/mysqld/mysqld.pid"
