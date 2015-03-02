@@ -9,5 +9,5 @@ type Config struct {
 	ConfigDir   string
 	Prefix      string
 	StoreClient backends.StoreClient
-	resourceDir string
+	ResourceDir string
 }

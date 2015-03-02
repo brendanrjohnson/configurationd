@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/BurntSushi/toml"
+	"github.com/brendanrjohnson/loadconfd/resource"
+	"github.com/kelseyhightower/confd/backends"
 	"github.com/kelseyhightower/confd/log"
 )
 
@@ -28,6 +31,8 @@ var (
 	quiet             bool
 	scheme            string
 	verbose           bool
+	resourceConfig    resource.Config
+	backendsConfig    backends.Config
 )
 
 //A config struct is used to configure loadconfd
@@ -61,6 +66,7 @@ func init() {
 	flag.BoolVar(&quiet, "quiet", false, "enable quiet logging")
 	flag.StringVar(&scheme, "scheme", "http", "the backend URI scheme (http or https)")
 	flag.BoolVar(&verbose, "verbose", false, "enable verbose logging")
+
 }
 
 // initConfig initializes the loadconfd configuration by first setting defaults,
@@ -117,12 +123,24 @@ func initConfig() error {
 		}
 	}
 	// Initialize the storage client
+	log.Notice("Backend set to " + config.Backend)
+	//	backendsConfig = backends.Config
+	backendsConfig = backends.Config{
+		Backend:      config.Backend,
+		ClientCaKeys: config.ClientCaKeys,
+		ClientCert:   config.ClientCert,
+		ClientKey:    config.ClientKey,
+		BackendNodes: config.BackendNodes,
+		Scheme:       config.Scheme,
+	}
 
-	fmt.Println(config.Backend)
-	fmt.Println(config.BackendNodes)
-	fmt.Println(config.ConfDir)
-	fmt.Println(config.Debug)
-
+	// Resource configuration
+	resourceConfig = resource.Config{
+		ConfDir:     config.ConfDir,
+		ConfigDir:   filepath.Join(config.ConfDir, "conf.d"),
+		Prefix:      config.Prefix,
+		ResourceDir: filepath.Join(config.ConfDir, "configurations"),
+	}
 	return nil
 }
 

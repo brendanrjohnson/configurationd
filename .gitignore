@@ -1,4 +1,5 @@
 registerd
+loadconfd
 *.sublime-project
 *.sublime-workspace
 
