@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/brendanrjohnson/loadconfd/backends"
 	"github.com/kelseyhightower/confd/log"
 )
 
@@ -32,4 +33,6 @@ func main() {
 	if err := initConfig(); err != nil {
 		log.Fatal(err.Error())
 	}
+	log.Notice("Starting loadconfd")
+
 }
