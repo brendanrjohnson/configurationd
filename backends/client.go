@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/brendanrjohnson/loadconfd/backends/consul"
+	"github.com/brendanrjohnson/loadconfd/backends/env"
 	"github.com/kelseyhightower/confd/log"
 )
 
@@ -24,6 +25,14 @@ func New(config Config) (StoreClient, error) {
 	log.Notice("Backend nodes set to " + strings.Join(backendNodes, ", "))
 	switch config.Backend {
 	case "consul":
-		return consul.
+		return consul.NewConsulClient(backendNodes)
+	case "etcd":
+		// Create the etcd client upfront and use it for the lif of the process.
+		// The etcdClient is an http.Client and designed to be reused
+		return
+	case "zookeeper":
+		return
+	case "env":
+		return env.NewEnvClient()
 	}
 }
