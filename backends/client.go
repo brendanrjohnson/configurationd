@@ -6,6 +6,7 @@ import (
 
 	"github.com/brendanrjohnson/loadconfd/backends/consul"
 	"github.com/brendanrjohnson/loadconfd/backends/env"
+	"github.com/brendanrjohnson/loadconfd/backends/zookeeper"
 	"github.com/kelseyhightower/confd/log"
 )
 
@@ -31,7 +32,7 @@ func New(config Config) (StoreClient, error) {
 		// The etcdClient is an http.Client and designed to be reused
 		return
 	case "zookeeper":
-		return
+		return zookeeper.NewZookeeperClient(backendNodes)
 	case "env":
 		return env.NewEnvClient()
 	}
