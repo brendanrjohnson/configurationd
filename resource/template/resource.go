@@ -1,4 +1,4 @@
-package resource
+package template
 
 import (
 	"github.com/kelseyhightower/confd/backends"

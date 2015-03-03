@@ -34,5 +34,9 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	log.Notice("Starting loadconfd")
-	storeClient, err := b
+	storeClient, err := backends.New(backendsConfig)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	resourceConfig.StoreClient = storeClient
 }

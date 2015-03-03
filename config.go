@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
+	"github.com/brendanrjohnson/loadconfd/backends"
 	"github.com/brendanrjohnson/loadconfd/resource"
-	"github.com/kelseyhightower/confd/backends"
 	"github.com/kelseyhightower/confd/log"
 )
 
