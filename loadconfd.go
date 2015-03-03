@@ -34,5 +34,5 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	log.Notice("Starting loadconfd")
-	storeClient, err := backends
+	storeClient, err := b
 }

@@ -37,4 +37,5 @@ func New(config Config) (StoreClient, error) {
 	case "env":
 		return env.NewEnvClient()
 	}
+	return nil, errors.New("Invalid backend")
 }
